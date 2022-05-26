@@ -1,11 +1,23 @@
 # Prova esercitazione finale
 
 ## Descrizione
-Breve descrizione del problema e organizzazione ad alto livello del progetto
+Struttura di backend sviluppata con Springboot per supportare le operazioni di CRUD su un insieme di Utenti(user) e Memo(todo).
+
+Il JDK di riferimento è la versione **11**, il DMBS scelto è **PostgreSQL 14**.
+
+## Diagramma ER
+![diagramma er](https://i.imgur.com/DoMhP1b.png)
+
+## Istruzioni di utilizzo (senza Eclipse)
+Il progetto va compilato con Maven tramite il comando:
+
+```mvn clean package -U```
+
+Per lanciare il progetto:
+
+```java -jar target/backend-0.0.1-SNAPSHOT.jar```
 
 
-## Back-end
-Breve descrizione della strumentistica e i software utilizzati per lo sviluppo, grafici vari
 
 ### Strumenti
 - [Spring Initializr](https://start.spring.io/)
