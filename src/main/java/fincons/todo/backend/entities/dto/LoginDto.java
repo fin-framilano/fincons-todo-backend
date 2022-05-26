@@ -21,4 +21,11 @@ public class LoginDto {
 		this.password = password;
 	}
 
+	@Override
+	public String toString() {
+		return "LoginDto [mail=" + mail + ", password=" + password + "]";
+	}
+	
+	
+
 }

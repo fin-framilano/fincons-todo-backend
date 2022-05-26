@@ -22,12 +22,17 @@ public class TodoController {
 
 	private TodoService todoService;
 	
+	/**
+	 * Constructor Injection del servizio collegato alla gestione dei promemoria
+	 * @param todoService
+	 */
 	public TodoController(
 			@Qualifier("todoServiceImpl") TodoService todoService
 			) {
 		this.todoService = todoService;
 	}
 	
+	//Restituisce tutti i Todo collegati a un utente
 	@GetMapping("/user/{user_id}")
 	public ResponseEntity<List<TodoDto>> getTodosByUser(@PathVariable("user_id") Long userId) {
 		List<TodoDto> todoDtoList = todoService.findTodoByUserId(userId);
@@ -35,6 +40,7 @@ public class TodoController {
 		else return new ResponseEntity<List<TodoDto>>(todoDtoList, HttpStatus.OK);
 	}
 	
+	//Creazione di un nuovo Todo
 	@PostMapping
 	public ResponseEntity<Long> create(@RequestBody TodoDto todoDto) {
 		Long id = todoService.create(todoDto);
@@ -42,6 +48,7 @@ public class TodoController {
 				? new ResponseEntity<Long>(id, HttpStatus.OK) : new ResponseEntity<Long>(HttpStatus.NO_CONTENT);
 	}
 	
+	//Eliminazione di un Todo dato il suo id
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable("id") Long id) {
 		this.todoService.delete(id);

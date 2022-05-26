@@ -11,7 +11,7 @@ import fincons.todo.backend.entities.Todo;
 @Repository
 public interface TodoRepository extends JpaRepository<Todo, Long> {
 
-	@Query(name="select t from Todo t where t.user_id = :user_id", nativeQuery=true)
+	@Query(name = "select t from Todo t where t.user_id = :user_id", nativeQuery = true)
 	public List<Todo> findTodoByUserId(Long user_id);
 
 }

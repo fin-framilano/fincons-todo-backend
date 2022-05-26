@@ -12,6 +12,14 @@ import fincons.todo.backend.entities.dto.LoginDto;
 import fincons.todo.backend.entities.dto.UserDto;
 import fincons.todo.backend.services.SecurityService;
 
+/**
+ * Controller di sicurezza utilizzato essenzialmente per il login
+ * Ma dovrebbe contenere anche funzione di autenticazione aggiuntive relative alla gestione
+ * del JWS Token e interazione con gli interceptors
+ * @author francesco
+ *
+ */
+
 @RestController
 @RequestMapping("/security")
 public class SecurityController {

@@ -51,4 +51,11 @@ public class User implements Serializable {
 		return serialVersionUID;
 	}
 
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", mail=" + mail + ", password=" + password + "]";
+	}
+	
+	
+
 }

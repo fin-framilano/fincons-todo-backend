@@ -22,16 +22,21 @@ public class TodoServiceImpl implements TodoService {
 	private TodoRepository todoRepository;
 	private UserRepository userRepository;
 
-	public TodoServiceImpl(@Qualifier("todoRepository") TodoRepository todoRepository,
-			@Qualifier("userRepository") UserRepository userRepository) {
+	public TodoServiceImpl(
+			@Qualifier("todoInMemoryRepository") TodoRepository todoRepository,
+			@Qualifier("userInMemoryRepository") UserRepository userRepository) {
 		this.todoRepository = todoRepository;
 		this.userRepository = userRepository;
 	}
-
+	
+	/**
+	 * Recupera tutti i promemoria collegati a un particolare ID Utente
+	 */
 	public List<TodoDto> findTodoByUserId(Long userId) {
 		List<Todo> todoVoList = this.todoRepository.findTodoByUserId(userId);
 		if (todoVoList == null)
 			return null;
+		//Mapping da Value Object a DATA Transfer Object
 		List<TodoDto> todoDtoList = todoVoList.stream().map(t -> TodoUtils.fromVOtoDTO(t)).collect(Collectors.toList());
 		return todoDtoList;
 	}
