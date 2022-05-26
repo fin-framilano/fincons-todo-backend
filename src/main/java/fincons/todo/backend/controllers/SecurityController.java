@@ -16,6 +16,8 @@ import fincons.todo.backend.services.SecurityService;
  * Controller di sicurezza utilizzato essenzialmente per il login
  * Ma dovrebbe contenere anche funzione di autenticazione aggiuntive relative alla gestione
  * del JWS Token e interazione con gli interceptors
+ * 
+ * Esposizione di una full REST API di questo applicativo
  * @author francesco
  *
  */

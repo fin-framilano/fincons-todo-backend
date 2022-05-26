@@ -22,6 +22,14 @@ public class TodoServiceImpl implements TodoService {
 	private TodoRepository todoRepository;
 	private UserRepository userRepository;
 
+	/**
+	 * Constructor Injection dei repository, i qualifier disponibili sono:
+	 * nameRepository per la JPA Repository con DB Postgres
+	 * nameInMemoryRepository per l'implementazione in memory tramite ArrayList
+	 * @param todoRepository
+	 * @param userRepository
+	 */
+	
 	public TodoServiceImpl(
 			@Qualifier("todoInMemoryRepository") TodoRepository todoRepository,
 			@Qualifier("userInMemoryRepository") UserRepository userRepository) {
@@ -43,16 +51,29 @@ public class TodoServiceImpl implements TodoService {
 
 	/**
 	 * Variabile di fallback nel caso nessuna data di scadenza sia inserita
+	 * Il valore di questa variabile è recuperato da application.properties
 	 */
 	@Value("${days.fallback}")
 	private int days_fallback;
 
+	
+	/**
+	 * Crea un nuovo utente
+	 */
 	@SuppressWarnings("deprecation")
 	public Long create(TodoDto todoDto) {
 		todoDto.setId(Long.valueOf(0));
+		//Creo un VO dal DTO dell'utente
 		Todo todoVo = TodoUtils.fromDTOtoVO(todoDto);
+		
+		// Gestisco la creazione dei timestamp in JAVA, nel front-end (il dto) faceva uso di semplici stringhe
+		// per facilitare la conversione da un formato ad un altro
 		Timestamp createdAt = Timestamp.valueOf(todoDto.getCreatedAt());
 		Timestamp dueDate = Timestamp.valueOf(todoDto.getDueDate());
+		
+		// La data "nulla" quando il form della data non è riempito è 1970-01-01 01:00
+		// Se la data è effettiva è quella, allora inserisco come dueData la data attuale + days_fallback giorni
+		// Utilizzo Calendar per facilitare la somma dei giorni
 		if (dueDate.getYear() == 70) {
 			System.out.println("Data di fallback, prendo la data attuale e aggiungo " + days_fallback + " giorni");
 			Calendar calendar = Calendar.getInstance();
@@ -69,7 +90,9 @@ public class TodoServiceImpl implements TodoService {
 		return this.todoRepository.save(todoVo).getId();
 	}
 
-	@Override
+	/**
+	 * Cancello il promemoria collegato a un particolare ID
+	 */
 	public void delete(Long id) {
 		Todo todoVo = this.todoRepository.findById(id).get();
 		if (todoVo != null) this.todoRepository.delete(todoVo);		

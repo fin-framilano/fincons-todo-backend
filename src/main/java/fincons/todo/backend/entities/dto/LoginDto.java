@@ -1,5 +1,11 @@
 package fincons.todo.backend.entities.dto;
 
+/**
+ * Oggetto temporaneo per il controllo delle credenziali in seguito a un login
+ * @author francesco
+ *
+ */
+
 public class LoginDto {
 
 	private String mail;

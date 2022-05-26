@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fincons.todo.backend.entities.dto.UserDto;
 import fincons.todo.backend.services.UserService;
+/**
+ * Controller che espone le API Rest relative agli utenti
+ * @author francesco
+ *
+ */
 
 @RestController
 @RequestMapping("/users")

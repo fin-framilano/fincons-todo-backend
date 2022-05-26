@@ -21,7 +21,9 @@ public class SecurityServiceImpl implements SecurityService {
 		this.userRepository = userRepository;
 	}
 
-	@Override
+	/**
+	 * Servizio di login che dato un LoginDto restituisce uno UserDto
+	 */
 	public UserDto findUserByMailAndPassword(LoginDto loginDto) {
 		User userDvo = userRepository.findUserByMailAndPassword(loginDto.getMail(), loginDto.getPassword());
 		if (userDvo == null) return null;

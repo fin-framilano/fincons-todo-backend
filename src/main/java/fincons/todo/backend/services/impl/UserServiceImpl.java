@@ -21,14 +21,15 @@ public class UserServiceImpl implements UserService {
 		this.userRepository = userRepository;
 	}
 	
-	@Override
+	/**
+	 * Restituisco uno User in base alla sua mail, null se la mail non esiste
+	 */
 	public UserDto findByMail(String mail) {
 		User userVo = this.userRepository.findByMail(mail);
 		if (userVo != null) return UserUtils.fromVOtoDTO(userVo);
 		else return null;
 	}
 
-	@Override
 	public Long create(UserDto userDto) {
 		userDto.setId(Long.valueOf(0));
 		User userVo = UserUtils.fromDTOtoVO(userDto);

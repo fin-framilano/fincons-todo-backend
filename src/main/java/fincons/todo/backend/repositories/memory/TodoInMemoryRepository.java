@@ -28,6 +28,9 @@ public class TodoInMemoryRepository implements TodoRepository {
 	 * Ho scelto di riemplementare a mano i metodi utilizzati all'interno dell'applicazione
 	 * In modo tale da permettere un cambio minimo nel codice dei Service (solo il Qualifier)
 	 * e permettere il funzionamento anche con un'implementazione senza DB
+	 * 
+	 * Sono costretto a includere/implementare anche i metodi che non utilizzo della JPA Repository
+	 * Sicuramente esiste un modo migliore per fare ciò
 	 */
 	
 	private List<Todo> listOfTodos = new ArrayList<Todo>();

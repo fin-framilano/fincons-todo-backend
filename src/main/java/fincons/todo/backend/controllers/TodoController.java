@@ -16,6 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 import fincons.todo.backend.entities.dto.TodoDto;
 import fincons.todo.backend.services.TodoService;
 
+/**
+ * Controller che espone le API Rest relative ai promemoria
+ * @author francesco
+ *
+ */
+
 @RestController
 @RequestMapping("/todos")
 public class TodoController {

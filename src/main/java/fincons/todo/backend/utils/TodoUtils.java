@@ -3,6 +3,13 @@ package fincons.todo.backend.utils;
 import fincons.todo.backend.entities.Todo;
 import fincons.todo.backend.entities.dto.TodoDto;
 
+/**
+ * Le classi Utils mi servono essenzialmente per convertire un Vo in un DTO e viceversa
+ * Due metodi sono implementati per questo scopo
+ * @author francesco
+ *
+ */
+
 public class TodoUtils {
 
 	public static TodoDto fromVOtoDTO(Todo t) {
