@@ -24,9 +24,9 @@ public class Todo implements Serializable {
 	private Long id;
 	@Column(name = "content")
 	private String content;
-	@Column(name = "createdAt")
+	@Column(name = "created_date")
 	private Timestamp createdAt;
-	@Column(name = "dueDate")
+	@Column(name = "due_date")
 	private Timestamp dueDate;
 	@Column(name = "status")
 	private String status;
