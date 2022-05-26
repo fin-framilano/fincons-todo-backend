@@ -10,4 +10,6 @@ public interface TodoService {
 
 	Long create(TodoDto todoDto);
 
+	void delete(Long id);
+
 }

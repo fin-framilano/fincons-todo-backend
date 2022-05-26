@@ -64,4 +64,12 @@ public class TodoServiceImpl implements TodoService {
 		return this.todoRepository.save(todoVo).getId();
 	}
 
+	@Override
+	public void delete(Long id) {
+		Todo todoVo = this.todoRepository.findById(id).get();
+		if (todoVo != null) this.todoRepository.delete(todoVo);		
+	}
+	
+	
+
 }
