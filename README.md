@@ -3,7 +3,7 @@
 ## Descrizione
 Struttura di backend sviluppata con Springboot per supportare le operazioni di CRUD su un insieme di Utenti(user) e Memo(todo).
 
-Il JDK di riferimento è la versione **11**, il DMBS scelto è **PostgreSQL 14**.
+Il JDK di riferimento è la versione **11**, il DMBS scelto è **PostgreSQL 14** e infine **Maven** gestisce le dipendenze dell'applicativo.
 
 ## Diagramma ER
 ![diagramma er](https://i.imgur.com/DoMhP1b.png)
