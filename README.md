@@ -17,6 +17,8 @@ Per lanciare il progetto:
 
 ```java -jar target/backend-0.0.1-SNAPSHOT.jar```
 
+### Visualizzazione grafica di controllers, services, repositories and entities
+![Diagramma progetto](https://i.imgur.com/QGCErKv.png)
 
 
 ### Strumenti
