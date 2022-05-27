@@ -16,14 +16,16 @@ public class SecurityServiceImpl implements SecurityService {
 	private UserRepository userRepository;
 	
 	public SecurityServiceImpl(
-			//@Qualifier("userInMemoryRepository") UserRepository userRepository
-			@Qualifier("userRepository") UserRepository userRepository
+			@Qualifier("userInMemoryRepository") UserRepository userRepository
+			//@Qualifier("userRepository") UserRepository userRepository
 			) {
 		this.userRepository = userRepository;
 	}
 
 	/**
 	 * Servizio di login che dato un LoginDto restituisce uno UserDto
+	 * @param loginDto credenziali utilizzate per il login
+	 * @return utente loggato
 	 */
 	public UserDto findUserByMailAndPassword(LoginDto loginDto) {
 		User userDvo = userRepository.findUserByMailAndPassword(loginDto.getMail(), loginDto.getPassword());

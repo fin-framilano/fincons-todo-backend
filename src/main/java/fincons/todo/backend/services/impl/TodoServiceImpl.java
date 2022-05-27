@@ -31,16 +31,18 @@ public class TodoServiceImpl implements TodoService {
 	 */
 	
 	public TodoServiceImpl(
-			//@Qualifier("todoInMemoryRepository") TodoRepository todoRepository,
-			//@Qualifier("userInMemoryRepository") UserRepository userRepository
-			@Qualifier("todoRepository") TodoRepository todoRepository,
-			@Qualifier("userRepository") UserRepository userRepository) {
+			@Qualifier("todoInMemoryRepository") TodoRepository todoRepository,
+			@Qualifier("userInMemoryRepository") UserRepository userRepository
+			//@Qualifier("todoRepository") TodoRepository todoRepository,
+			//@Qualifier("userRepository") UserRepository userRepository
+			) {
 		this.todoRepository = todoRepository;
 		this.userRepository = userRepository;
 	}
 	
 	/**
 	 * Recupera tutti i promemoria collegati a un particolare ID Utente
+	 * @param userId
 	 */
 	public List<TodoDto> findTodoByUserId(Long userId) {
 		List<Todo> todoVoList = this.todoRepository.findTodoByUserId(userId);
@@ -61,9 +63,11 @@ public class TodoServiceImpl implements TodoService {
 	
 	/**
 	 * Crea un nuovo utente
+	 * @param todoDto
+	 * @return id del Todo creato
 	 */
 	@SuppressWarnings("deprecation")
-	public Long create(TodoDto todoDto) {
+	public Long create(TodoDto todoDto) throws IllegalArgumentException {
 		todoDto.setId(Long.valueOf(0));
 		//Creo un VO dal DTO dell'utente
 		Todo todoVo = TodoUtils.fromDTOtoVO(todoDto);
@@ -94,6 +98,7 @@ public class TodoServiceImpl implements TodoService {
 
 	/**
 	 * Cancello il promemoria collegato a un particolare ID
+	 * @param id del todo da cancellare
 	 */
 	public void delete(Long id) {
 		Todo todoVo = this.todoRepository.findById(id).get();
@@ -103,9 +108,12 @@ public class TodoServiceImpl implements TodoService {
 	
 	/**
 	 * Metodo di aggiornamento di un promemoria
+	 * @param id del todo da aggiornare
+	 * @param todoDto da aggiornare 
+	 * @return id del todo
 	 */
 	@SuppressWarnings("deprecation")
-	public Long update(Long id, TodoDto todoDto) {
+	public Long update(Long id, TodoDto todoDto) throws IllegalArgumentException {
 		todoDto.setId(id);
 		Todo todoVo = TodoUtils.fromDTOtoVO(todoDto);
 		
@@ -115,7 +123,6 @@ public class TodoServiceImpl implements TodoService {
 		
 
 		if (dueDate.getYear() == 70) {
-			System.out.println("Data di fallback, prendo la data attuale e aggiungo " + days_fallback + " giorni");
 			Calendar calendar = Calendar.getInstance();
 			calendar.setTime(createdAt);
 			calendar.add(Calendar.DAY_OF_MONTH, this.days_fallback);

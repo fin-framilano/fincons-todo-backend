@@ -8,9 +8,9 @@ public interface TodoService {
 
 	List<TodoDto> findTodoByUserId(Long user_id);
 
-	Long create(TodoDto todoDto);
+	Long create(TodoDto todoDto) throws IllegalArgumentException;
 
-	Long update(Long id, TodoDto todoDto);
+	Long update(Long id, TodoDto todoDto) throws IllegalArgumentException;
 
 	void delete(Long id);
 

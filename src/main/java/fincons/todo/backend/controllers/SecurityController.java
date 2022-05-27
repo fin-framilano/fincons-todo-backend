@@ -1,5 +1,7 @@
 package fincons.todo.backend.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +27,8 @@ import fincons.todo.backend.services.SecurityService;
 @RestController
 @RequestMapping("/security")
 public class SecurityController {
+	
+	private static Logger logger = LoggerFactory.getLogger(SecurityController.class);
 
 	private SecurityService securityService;
 	
@@ -36,6 +40,9 @@ public class SecurityController {
 	
 	@PostMapping
 	public ResponseEntity<UserDto> login(@RequestBody LoginDto loginDto) {
+		//Logging
+		logger.info("POST-(/security)-SecurityController: Richiesta di login");
+		
 		UserDto userDto = securityService.findUserByMailAndPassword(loginDto);
 		if (userDto == null) return new ResponseEntity<UserDto>(HttpStatus.NO_CONTENT);
 		else return new ResponseEntity<UserDto>(userDto, HttpStatus.OK);

@@ -16,14 +16,16 @@ public class UserServiceImpl implements UserService {
 	private UserRepository userRepository;
 	
 	public UserServiceImpl(
-			//@Qualifier("userInMemoryRepository") UserRepository userRepository
-			@Qualifier("userRepository") UserRepository userRepository
+			@Qualifier("userInMemoryRepository") UserRepository userRepository
+			//@Qualifier("userRepository") UserRepository userRepository
 	) {
 		this.userRepository = userRepository;
 	}
 	
 	/**
 	 * Restituisco uno User in base alla sua mail, null se la mail non esiste
+	 * @param mail dell'utente da trovare
+	 * @return l'utente trovato
 	 */
 	public UserDto findByMail(String mail) {
 		User userVo = this.userRepository.findByMail(mail);
@@ -31,6 +33,10 @@ public class UserServiceImpl implements UserService {
 		else return null;
 	}
 
+	/**
+	 * @param userDto l'utente da creare
+	 * @return id associato all'utente creato
+	 */
 	public Long create(UserDto userDto) {
 		userDto.setId(Long.valueOf(0));
 		User userVo = UserUtils.fromDTOtoVO(userDto);
