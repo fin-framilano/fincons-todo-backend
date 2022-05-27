@@ -31,8 +31,10 @@ public class TodoServiceImpl implements TodoService {
 	 */
 	
 	public TodoServiceImpl(
-			@Qualifier("todoInMemoryRepository") TodoRepository todoRepository,
-			@Qualifier("userInMemoryRepository") UserRepository userRepository) {
+			//@Qualifier("todoInMemoryRepository") TodoRepository todoRepository,
+			//@Qualifier("userInMemoryRepository") UserRepository userRepository
+			@Qualifier("todoRepository") TodoRepository todoRepository,
+			@Qualifier("userRepository") UserRepository userRepository) {
 		this.todoRepository = todoRepository;
 		this.userRepository = userRepository;
 	}
@@ -72,7 +74,7 @@ public class TodoServiceImpl implements TodoService {
 		Timestamp dueDate = Timestamp.valueOf(todoDto.getDueDate());
 		
 		// La data "nulla" quando il form della data non è riempito è 1970-01-01 01:00
-		// Se la data è effettiva è quella, allora inserisco come dueData la data attuale + days_fallback giorni
+		// Se la data effettiva è quella, allora inserisco come dueDate la data attuale + days_fallback giorni
 		// Utilizzo Calendar per facilitare la somma dei giorni
 		if (dueDate.getYear() == 70) {
 			System.out.println("Data di fallback, prendo la data attuale e aggiungo " + days_fallback + " giorni");
@@ -96,6 +98,36 @@ public class TodoServiceImpl implements TodoService {
 	public void delete(Long id) {
 		Todo todoVo = this.todoRepository.findById(id).get();
 		if (todoVo != null) this.todoRepository.delete(todoVo);		
+	}
+
+	
+	/**
+	 * Metodo di aggiornamento di un promemoria
+	 */
+	@SuppressWarnings("deprecation")
+	public Long update(Long id, TodoDto todoDto) {
+		todoDto.setId(id);
+		Todo todoVo = TodoUtils.fromDTOtoVO(todoDto);
+		
+
+		Timestamp createdAt = Timestamp.valueOf(todoDto.getCreatedAt());
+		Timestamp dueDate = Timestamp.valueOf(todoDto.getDueDate());
+		
+
+		if (dueDate.getYear() == 70) {
+			System.out.println("Data di fallback, prendo la data attuale e aggiungo " + days_fallback + " giorni");
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(createdAt);
+			calendar.add(Calendar.DAY_OF_MONTH, this.days_fallback);
+			Timestamp newDueDate = new Timestamp(calendar.getTimeInMillis());
+			todoVo.setDueDate(newDueDate);
+			todoVo.setCreatedAt(createdAt);
+		} else {
+			todoVo.setDueDate(dueDate);
+			todoVo.setCreatedAt(createdAt);
+		}
+		todoVo.setUser(this.userRepository.findById(todoDto.getUserId()).get());
+		return this.todoRepository.saveAndFlush(todoVo).getId();
 	}
 	
 	

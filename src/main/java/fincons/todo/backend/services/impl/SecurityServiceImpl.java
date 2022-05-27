@@ -16,7 +16,8 @@ public class SecurityServiceImpl implements SecurityService {
 	private UserRepository userRepository;
 	
 	public SecurityServiceImpl(
-			@Qualifier("userInMemoryRepository") UserRepository userRepository
+			//@Qualifier("userInMemoryRepository") UserRepository userRepository
+			@Qualifier("userRepository") UserRepository userRepository
 			) {
 		this.userRepository = userRepository;
 	}

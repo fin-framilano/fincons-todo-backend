@@ -16,7 +16,8 @@ public class UserServiceImpl implements UserService {
 	private UserRepository userRepository;
 	
 	public UserServiceImpl(
-			@Qualifier("userInMemoryRepository") UserRepository userRepository
+			//@Qualifier("userInMemoryRepository") UserRepository userRepository
+			@Qualifier("userRepository") UserRepository userRepository
 	) {
 		this.userRepository = userRepository;
 	}

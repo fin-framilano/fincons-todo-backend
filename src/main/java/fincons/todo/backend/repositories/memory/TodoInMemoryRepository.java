@@ -69,8 +69,15 @@ public class TodoInMemoryRepository implements TodoRepository {
 		return null;
 	}
 	
+	public <S extends Todo> S saveAndFlush(S entity) {
+		//Elimino la nota precedente e la sostituisco con la nuova
+		this.delete(this.findById(entity.getId()).get());
+		this.listOfTodos.add(entity);
+		return entity;
+	}
+	
 	/**
-	 * Da qui i metodi necessari per l'implementazione di UserRepository
+	 * Da qui i metodi necessari per l'implementazione di TodoRepository
 	 */
 
 	@Override
@@ -101,12 +108,6 @@ public class TodoInMemoryRepository implements TodoRepository {
 	public void flush() {
 		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	public <S extends Todo> S saveAndFlush(S entity) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
