@@ -5,6 +5,8 @@ import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import fincons.todo.backend.entities.enums.StatusEnum;
 
 @Entity
 @Table(name = "todo")
@@ -28,8 +32,10 @@ public class Todo implements Serializable {
 	private Timestamp createdAt;
 	@Column(name = "due_date")
 	private Timestamp dueDate;
+	
+	@Enumerated(EnumType.STRING)
 	@Column(name = "status")
-	private String status;
+	private StatusEnum status;
 
 	@JoinColumn(name = "user_id")
 	@ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER)
@@ -67,11 +73,11 @@ public class Todo implements Serializable {
 		this.dueDate = dueDate;
 	}
 
-	public String getStatus() {
+	public StatusEnum getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(StatusEnum status) {
 		this.status = status;
 	}
 
@@ -86,5 +92,15 @@ public class Todo implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	@Override
+	public String toString() {
+		return "Todo [id=" + id + ", content=" + content + ", createdAt=" + createdAt + ", dueDate=" + dueDate
+				+ ", status=" + status + ", user=" + user + "]";
+	}
+	
+	
+
+	
 
 }

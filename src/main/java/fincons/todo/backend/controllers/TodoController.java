@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import fincons.todo.backend.entities.dto.TodoDto;
+import fincons.todo.backend.entities.dtos.TodoDto;
 import fincons.todo.backend.services.TodoService;
 
 /**
@@ -77,7 +77,7 @@ public class TodoController {
 	@PutMapping("/{id}")
 	public ResponseEntity<Long> update(@PathVariable("id") Long todoId, @RequestBody TodoDto todoDto) {
 		//Logging
-		logger.info("PUT-(/todos/{id})-TodoController: Richiesta aggiornamento di un Todo");
+		logger.info("PUT-(/todos/{id})-TodoController: Richiesto aggiornamento di un Todo");
 		
 		try {
 			Long id = todoService.update(todoId, todoDto);

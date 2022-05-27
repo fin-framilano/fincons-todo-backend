@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import fincons.todo.backend.entities.dto.UserDto;
+import fincons.todo.backend.entities.dtos.UserDto;
 import fincons.todo.backend.services.UserService;
 /**
  * Controller che espone le API Rest relative agli utenti

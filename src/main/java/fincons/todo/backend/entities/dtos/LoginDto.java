@@ -1,4 +1,4 @@
-package fincons.todo.backend.entities.dto;
+package fincons.todo.backend.entities.dtos;
 
 /**
  * Oggetto temporaneo per il controllo delle credenziali in seguito a un login

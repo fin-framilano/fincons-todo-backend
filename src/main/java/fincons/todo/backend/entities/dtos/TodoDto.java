@@ -1,4 +1,6 @@
-package fincons.todo.backend.entities.dto;
+package fincons.todo.backend.entities.dtos;
+
+import fincons.todo.backend.entities.enums.StatusEnum;
 
 public class TodoDto {
 
@@ -6,7 +8,7 @@ public class TodoDto {
 	private String content;
 	private String createdAt;
 	private String dueDate;
-	private String status;
+	private StatusEnum status;
 	private Long userId;
 
 	public Long getId() {
@@ -41,11 +43,11 @@ public class TodoDto {
 		this.dueDate = dueDate;
 	}
 
-	public String getStatus() {
+	public StatusEnum getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(StatusEnum status) {
 		this.status = status;
 	}
 

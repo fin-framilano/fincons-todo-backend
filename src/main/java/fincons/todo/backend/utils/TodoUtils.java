@@ -1,7 +1,7 @@
 package fincons.todo.backend.utils;
 
 import fincons.todo.backend.entities.Todo;
-import fincons.todo.backend.entities.dto.TodoDto;
+import fincons.todo.backend.entities.dtos.TodoDto;
 
 /**
  * Le classi Utils mi servono essenzialmente per convertire un Vo in un DTO e viceversa

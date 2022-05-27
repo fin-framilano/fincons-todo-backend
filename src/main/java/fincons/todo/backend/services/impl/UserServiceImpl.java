@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import fincons.todo.backend.entities.User;
-import fincons.todo.backend.entities.dto.UserDto;
+import fincons.todo.backend.entities.dtos.UserDto;
 import fincons.todo.backend.repositories.UserRepository;
 import fincons.todo.backend.services.UserService;
 import fincons.todo.backend.utils.UserUtils;
@@ -16,8 +16,8 @@ public class UserServiceImpl implements UserService {
 	private UserRepository userRepository;
 	
 	public UserServiceImpl(
-			@Qualifier("userInMemoryRepository") UserRepository userRepository
-			//@Qualifier("userRepository") UserRepository userRepository
+			//@Qualifier("userInMemoryRepository") UserRepository userRepository
+			@Qualifier("userRepository") UserRepository userRepository
 	) {
 		this.userRepository = userRepository;
 	}

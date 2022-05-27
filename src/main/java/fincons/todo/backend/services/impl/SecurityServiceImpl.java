@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import fincons.todo.backend.entities.User;
-import fincons.todo.backend.entities.dto.LoginDto;
-import fincons.todo.backend.entities.dto.UserDto;
+import fincons.todo.backend.entities.dtos.LoginDto;
+import fincons.todo.backend.entities.dtos.UserDto;
 import fincons.todo.backend.repositories.UserRepository;
 import fincons.todo.backend.services.SecurityService;
 import fincons.todo.backend.utils.UserUtils;
@@ -16,8 +16,8 @@ public class SecurityServiceImpl implements SecurityService {
 	private UserRepository userRepository;
 	
 	public SecurityServiceImpl(
-			@Qualifier("userInMemoryRepository") UserRepository userRepository
-			//@Qualifier("userRepository") UserRepository userRepository
+			//@Qualifier("userInMemoryRepository") UserRepository userRepository
+			@Qualifier("userRepository") UserRepository userRepository
 			) {
 		this.userRepository = userRepository;
 	}

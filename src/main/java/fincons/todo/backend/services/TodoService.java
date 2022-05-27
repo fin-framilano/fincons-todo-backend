@@ -2,7 +2,7 @@ package fincons.todo.backend.services;
 
 import java.util.List;
 
-import fincons.todo.backend.entities.dto.TodoDto;
+import fincons.todo.backend.entities.dtos.TodoDto;
 
 public interface TodoService {
 

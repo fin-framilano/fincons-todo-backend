@@ -1,4 +1,4 @@
-package fincons.todo.backend.entities.dto;
+package fincons.todo.backend.entities.dtos;
 
 public class UserDto {
 	private Long id;

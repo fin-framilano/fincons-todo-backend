@@ -1,6 +1,6 @@
 package fincons.todo.backend.services;
 
-import fincons.todo.backend.entities.dto.UserDto;
+import fincons.todo.backend.entities.dtos.UserDto;
 
 public interface UserService {
 

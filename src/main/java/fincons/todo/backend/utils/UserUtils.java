@@ -1,7 +1,7 @@
 package fincons.todo.backend.utils;
 
 import fincons.todo.backend.entities.User;
-import fincons.todo.backend.entities.dto.UserDto;
+import fincons.todo.backend.entities.dtos.UserDto;
 
 public class UserUtils {
 

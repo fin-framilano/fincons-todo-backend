@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import fincons.todo.backend.entities.Todo;
-import fincons.todo.backend.entities.dto.TodoDto;
+import fincons.todo.backend.entities.dtos.TodoDto;
 import fincons.todo.backend.repositories.TodoRepository;
 import fincons.todo.backend.repositories.UserRepository;
 import fincons.todo.backend.services.TodoService;
@@ -31,10 +31,10 @@ public class TodoServiceImpl implements TodoService {
 	 */
 	
 	public TodoServiceImpl(
-			@Qualifier("todoInMemoryRepository") TodoRepository todoRepository,
-			@Qualifier("userInMemoryRepository") UserRepository userRepository
-			//@Qualifier("todoRepository") TodoRepository todoRepository,
-			//@Qualifier("userRepository") UserRepository userRepository
+			//@Qualifier("todoInMemoryRepository") TodoRepository todoRepository,
+			//@Qualifier("userInMemoryRepository") UserRepository userRepository
+			@Qualifier("todoRepository") TodoRepository todoRepository,
+			@Qualifier("userRepository") UserRepository userRepository
 			) {
 		this.todoRepository = todoRepository;
 		this.userRepository = userRepository;
@@ -81,7 +81,6 @@ public class TodoServiceImpl implements TodoService {
 		// Se la data effettiva è quella, allora inserisco come dueDate la data attuale + days_fallback giorni
 		// Utilizzo Calendar per facilitare la somma dei giorni
 		if (dueDate.getYear() == 70) {
-			System.out.println("Data di fallback, prendo la data attuale e aggiungo " + days_fallback + " giorni");
 			Calendar calendar = Calendar.getInstance();
 			calendar.setTime(createdAt);
 			calendar.add(Calendar.DAY_OF_MONTH, this.days_fallback);
