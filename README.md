@@ -1,4 +1,4 @@
-# Prova esercitazione finale
+# Back-end Esercitazione Finale
 
 ## Descrizione
 Struttura di backend sviluppata con Springboot per supportare le operazioni di CRUD su un insieme di Utenti(user) e Memo(todo).
